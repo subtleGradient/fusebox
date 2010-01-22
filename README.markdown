@@ -10,7 +10,7 @@ For example:
 
       var fb = Fusebox();
       fb.Array.prototype.hai = function() {
-        return "Oh hai, we have " + this.length + " items.";
+        return fb.String("Oh hai, we have " + this.length + " items.");
       };
       
       fb.Array(1,2,3).hai(); // "Oh hai, we have 3 items."
