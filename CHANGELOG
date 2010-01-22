@@ -1,0 +1,1 @@
+* Add the overlooked sort() method to the sandboxed Array.prototype. [jddalton]

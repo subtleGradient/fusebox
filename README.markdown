@@ -13,7 +13,7 @@ For example:
         return fb.String("Oh hai, we have " + this.length + " items.");
       };
       
-      fb.Array(1,2,3).hai(); // "Oh hai, we have 3 items."
+      fb.Array(1, 2, 3).hai(); // "Oh hai, we have 3 items."
       typeof window.Array.prototype.hai; // undefined
 
 Screencasts
@@ -130,7 +130,9 @@ Gotchas
   - Sandboxed natives don't affect the document natives but
     in some cases document natives may affect sandboxed
     natives. The `__proto__` technique used by Gecko\WebKit
-    is affected by modifications to the document natives.
+    is affected by modifications to the document natives. To
+    avoid this issue simply create the Fusebox before modifying
+    the document natives.
     
           Array.prototype.sort = function() { return "Oh noes!" };
           fb.Array(1, 2, 3).sort(); // "Oh noes!"

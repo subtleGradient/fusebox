@@ -325,6 +325,7 @@
      __push               = arrPlugin.push,
      __slice              = arrPlugin.slice,
      __some               = arrPlugin.some,
+     __sort               = arrPlugin.sort,
      __unshift            = arrPlugin.unshift,
      __getDate            = datePlugin.getDate,
      __getDay             = datePlugin.getDay,
@@ -505,6 +506,13 @@
     if (arrPlugin.some)
       arrPlugin.some = function some(callback, thisArg) {
         return __some.call(this, callback || K, thisArg);
+      };
+
+    if (!SKIP_METHODS_RETURNING_ARRAYS)
+      arrPlugin.sort = function sort(compareFn) {
+        return Array.fromArray(compareFn
+          ? __sort.call(this, compareFn)
+          : __sort.call(this));
       };
 
     arrPlugin.unshift = function unshift(item) {
@@ -730,9 +738,9 @@
      getUTCMinutes = nil, getUTCMonth = nil, getUTCSeconds = nil,
      getYear = nil, join = nil, indexOf = nil, lastIndexOf = nil,
      localeCompare = nil, match = nil, map = nil, push = nil, replace = nil,
-     search = nil, slice = nil, some = nil, split = nil, substr = nil,
-     substring = nil, toExponential = nil, toFixed = nil, toISOString = nil,
-     toJSON = nil, toLowerCase = nil, toLocaleLowerCase = nil,
+     search = nil, slice = nil, some = nil, sort = nil, split = nil,
+     substr = nil, substring = nil, toExponential = nil, toFixed = nil,
+     toISOString = nil, toJSON = nil, toLowerCase = nil, toLocaleLowerCase = nil,
      toLocaleUpperCase = nil, toPrecision = nil, toUpperCase = nil,
      trim = nil, unshift = nil;
 
