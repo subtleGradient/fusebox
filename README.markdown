@@ -134,8 +134,15 @@ Gotchas
     avoid this issue simply create the Fusebox before modifying
     the document natives.
     
+          // problem
           Array.prototype.sort = function() { return "Oh noes!" };
-          fb.Array(1, 2, 3).sort(); // "Oh noes!"
+          var fb = Fusebox();
+          fb.Array(3, 2, 1).sort(); // ["O", "h", " ", "n", "o", "e", "s", "!"]
+          
+          // solution
+          var fb = Fusebox();
+          Array.prototype.sort = function() { return "Oh noes!" };
+          fb.Array(3, 2, 1).sort(); // [1, 2, 3]
 
   - Sandboxed natives created by the ActiveX / iframe techniques will
     inherit<sup><a name="fnref3" href="#fn3">3</a></sup>
