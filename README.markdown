@@ -50,11 +50,11 @@ Chainable
 
 Working with arrays<sup><a name="fnref2" href="#fn2">2</a></sup>
 -------------------
-      // just like native arrays the sandboxed array will ouput [, , , ,]
-      var a = fb.Array(5);
+      // like the native Array constructor the sandboxed constructor will return [ , , ]
+      var a = fb.Array(3);
       
-      // equiv to square-bracket notation [5]
-      var b = fb.Array.create(5);
+      // equiv to square-bracket notation [3]
+      var b = fb.Array.create(3);
       
       // converting a native array to a sandboxed array
       var c = fb.Array.fromArray([1, 2, 3]);
@@ -91,7 +91,7 @@ Working with object instances
 Converting sandboxed natives to document natives
 ------------------------------------------------
       var a = fb.String("Oh hai");
-      var b = fb.Number(6);
+      var b = fb.Number(1);
       var c = fb.Array(1, 2, 3);
       
       // results in a document native (primitive)
@@ -133,13 +133,13 @@ Gotchas
     is affected by modifications to the document natives.
     
           Array.prototype.sort = function() { return "Oh noes!" };
-          fb.Array(1,2,3).sort(); // "Oh noes!"
+          fb.Array(1, 2, 3).sort(); // "Oh noes!"
 
   - Sandboxed natives created by the ActiveX / iframe techniques will
     inherit<sup><a name="fnref3" href="#fn3">3</a></sup>
     from the sandboxed Object object's prototype.
     
-          fb.Object.plugin.nom = function() {
+          fb.Object.prototype.nom = function() {
             return fb.String(this + " nom nom nom!");
           };
           
